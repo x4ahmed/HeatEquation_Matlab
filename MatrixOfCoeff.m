@@ -1,4 +1,6 @@
 %Number of unknowns, M points in (x) and N points in (y)
+clc
+clear
 M = 5;
 N = 4;
 
