@@ -1,9 +1,9 @@
 %Number of unknowns, M points in (x) and N points in (y)
-M = 3;
-N = 3;
+M = 5;
+N = 4;
 
 %Size of the Matrix
-size = N*M;
+size = (N-1)*(M-2);
 
 %Coefficients of the matrix
 c = 1;
@@ -23,17 +23,17 @@ for i = 1:size
     %Coefficients of (i,j)
     Matrix(i,i) = B;
     
-        if i+N <= size
+        if i+(N-1) <= size
             %Coefficients of (i+1,j)
-            Matrix(i,i+N) = A;
+            Matrix(i,i+(N-1)) = A;
         end
-        if i-N >= 1
+        if i-(N-1) >= 1
             %Coefficients of (i-1,j)
-            Matrix(i,i-N) = A;
+            Matrix(i,i-(N-1)) = A;
         end
         if i >= 2
             %Coefficients of (i,j-1)
-            if mod(i-1,M) == 0
+            if mod(i-1,(N-1)) == 0
                 Matrix(i,i-1) = 0;
             else
                 Matrix(i,i-1) = C;
@@ -42,7 +42,7 @@ for i = 1:size
         end
         if i<= size -1
             %Coefficients of (i,j+1)
-            if mod(i,M) == 0
+            if mod(i,(N-1)) == 0
                 Matrix(i,i+1) = 0;
             else
                 Matrix(i,i+1) = D;
