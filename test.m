@@ -13,7 +13,8 @@ B = -4*c*dt;
 C = dx^2;
 D = -dx^2;
 
-Matrix = zeros(size);
+%Matrix = zeros(size);
+Matrix = sparse(size,size);
 
 %Matrix of Coefficients 
 for i = 1:size
@@ -62,9 +63,10 @@ for idxM = 1:M-2
     end
 end
 b = -b;
-b;
-sol = Matrix\b;
-clear b Matrix c dt f dx A B C D c size len
+b2 = sparse(b);
+S = sparse(Matrix);
+sol = S\b2;
+clear b Matrix c dt f dx A B C D c size len b2 S
 
 
 % Concatonation Region to return the Matrix of the general solution
